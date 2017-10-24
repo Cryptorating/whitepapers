@@ -2,6 +2,7 @@
 extensions:
    - .pdf
 ---
+
 <ul>
 {% for file in site.static_files %}
 {% if page.extensions contains file.extname %}
@@ -9,3 +10,5 @@ extensions:
 {% endif %}
 {% endfor %}
 </ul>
+
+This site is done with [jeklist](https://github.com/fgallaire/jeklist).
