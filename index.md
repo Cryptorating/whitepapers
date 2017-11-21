@@ -14,4 +14,4 @@ extensions:
 {% endfor %}
 </ul>
 
-This site is done with [jeklist](https://github.com/fgallaire/jeklist)
+This site is done with [jeklist](https://github.com/fgallaire/jeklist) by [fgallaire](https://f.gallai.re)
