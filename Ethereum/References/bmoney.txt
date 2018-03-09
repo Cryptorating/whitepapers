@@ -1,0 +1,1 @@
+../../Bitcoin/References/bmoney.txt
