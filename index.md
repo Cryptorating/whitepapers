@@ -1,6 +1,7 @@
 ---
 extensions:
    - .pdf
+   - .txt
 ---
 
 <ul>
