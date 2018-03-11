@@ -2,6 +2,7 @@
 extensions:
    - .pdf
    - .txt
+   - .md
 ---
 
 <ul>
