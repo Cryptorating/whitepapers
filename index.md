@@ -1,14 +1,3 @@
----
-extensions:
-   - .pdf
-   - .txt
-   - .md
-truncate: 60
-html_link:
-   - .md
-   - .txt
----
-
 <ul>
 {% for file in site.static_files %}
     {% if page.extensions == null or page.extensions contains file.extname %}
