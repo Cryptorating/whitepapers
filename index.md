@@ -1,26 +1,76 @@
-<ul>
+---
+---
+
+<div>
+{% if site.style == 'list' %}
+    <ul>
+{% elsif site.style == 'nlist' %}
+    <ol>
+{% endif %}
+{% assign directory = '' %}
 {% for file in site.static_files %}
-    {% if page.extensions == null or page.extensions contains file.extname %}
+    {% if site.extensions == null or site.extensions contains file.extname %}
         {% assign dirs = file.path | split: '/' %}
-        {% if page.directories == null or page.directories contains dirs[1] %}
-            {% if page.html_link contains file.extname %}
+        {% if dirs[1] != directory and  site.style == 'dir' %}
+            {% if directory != '' %}
+                </dl>
+            {% endif %}
+            {% assign directory = dirs[1] %}
+            {% if site.spacification == null %}
+                <dt>{{ directory }}</dt>
+            {% else %}
+                <dt>{{ directory | replace: site.spacification, ' ' }}</dt>
+            {% endif %}
+            <dl>
+        {% endif %}
+        {% if site.directories == null or site.directories contains dirs[1] %}
+            {% if site.style contains 'list' %}
+                <li>
+            {% elsif site.style == 'dir' %}
+                <dd>
+            {% endif %}
+            {% if site.html_link contains file.extname %}
                 {% assign index = file.path.size | minus: file.extname.size %}
                 {% assign fpath = file.path | slice: 0, index %}
-                {% if page.truncate == null %}
-                    <li><a href="{{ site.github.baseurl }}{{ fpath }}">{{ fpath | slice: 1, fpath.size }}</a> (<a href="{{ site.github.baseurl }}{{ file.path }}">{{ file.extname }}</a>)</li>
+                {% if site.style == 'dir' %}
+                    {% assign fname = file.basename %}
                 {% else %}
-                    <li><a href="{{ site.github.baseurl }}{{ fpath }}">{{ fpath | slice: 1, fpath.size | truncate: page.truncate }}</a> (<a href="{{ site.github.baseurl }}{{ file.path }}">{{ file.extname }}</a>)</li>
+                    {% assign fname = fpath | slice: 1, fpath.size %}
+                {% endif %}
+                {% if site.truncate == null %}
+                    <a href="{{ site.github.baseurl }}{{ fpath }}">{{ fname }}</a> (<a href="{{ site.github.baseurl }}{{ file.path }}">{{ file.extname }}</a>)
+                {% else %}
+                    <a href="{{ site.github.baseurl }}{{ fpath }}">{{ fname | truncate: site.truncate }}</a> (<a href="{{ site.github.baseurl }}{{ file.path }}">{{ file.extname }}</a>)
                 {% endif %}
             {% else %}
-                {% if page.truncate == null %}
-                    <li><a href="{{ site.github.baseurl }}{{ file.path }}">{{ file.path | slice: 1, file.path.size }}</a></li>
+                {% if site.style == 'dir' %}
+                    {% assign fname = file.name %}
                 {% else %}
-                    <li><a href="{{ site.github.baseurl }}{{ file.path }}">{{ file.path | slice: 1, file.path.size | truncate: page.truncate }}</a></li>
+                    {% assign fname = file.path | slice: 1, file.path.size %}
                 {% endif %}
+                {% if site.truncate == null %}
+                    <a href="{{ site.github.baseurl }}{{ file.path }}">{{ fname }}</a>
+                {% else %}
+                    <a href="{{ site.github.baseurl }}{{ file.path }}">{{ fname | truncate: site.truncate }}</a>
+                {% endif %}
+            {% endif %}
+            {% if site.style contains 'list' %}
+                </li>
+            {% elsif site.style == 'dir' %}
+                </dd>
+            {% elsif site.style == null %}
+                <br>
             {% endif %}
         {% endif %}
     {% endif %}
 {% endfor %}
-</ul>
+{% if site.style == 'list' %}
+    </ul>
+{% elsif site.style == 'nlist' %}
+    </ol>
+{% elsif site.style == 'dir' %}
+    </dl>
+{% endif %}
+</div>
 
 This site is done with [jeklist](https://github.com/fgallaire/jeklist) by [fgallaire](https://f.gallai.re)

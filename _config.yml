@@ -2,16 +2,13 @@ theme: jekyll-theme-minimal
 google_analytics: UA-6780238-15
 markdown_ext: "md,txt"
 
-defaults:
-  -
-    scope:
-      path: ""
-    values:
-      extensions:
-        - .pdf
-        - .txt
-        - .md
-      truncate: 60
-      html_link:
-        - .md
-        - .txt
+style: dir
+spacification: "-"
+extensions:
+  - .pdf
+  - .txt
+  - .md
+truncate: 60
+html_link:
+  - .md
+  - .txt
