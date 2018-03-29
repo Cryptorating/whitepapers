@@ -16,12 +16,12 @@
                 </dl>
             {% endif %}
             {% assign directory = dirs[1] %}
+            <dl>
             {% if site.spacification == null %}
                 <dt>{{ directory }}</dt>
             {% else %}
                 <dt>{{ directory | replace: site.spacification, ' ' }}</dt>
             {% endif %}
-            <dl>
         {% endif %}
         {% if site.directories == null or site.directories contains dirs[1] %}
             {% if site.style contains 'list' %}
