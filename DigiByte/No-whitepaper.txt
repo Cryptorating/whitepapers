@@ -1,1 +1,1 @@
-../No-whitepaper/No-whitepaper.txt
+../No-whitepaper.txt
