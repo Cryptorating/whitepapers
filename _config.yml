@@ -3,7 +3,8 @@ google_analytics: UA-6780238-15
 markdown_ext: "md,txt"
 
 style: dir
-spacification: "-"
+dir_spacification: "-"
+dir_links: true
 extensions:
   - .pdf
   - .txt

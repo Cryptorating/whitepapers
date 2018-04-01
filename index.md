@@ -12,16 +12,25 @@
 {% for file in site.static_files %}
     {% if site.extensions == null or site.extensions contains file.extname %}
         {% assign dirs = file.path | split: '/' %}
+        {% unless site.style == 'dir' and dirs.size < 3 %}
         {% if dirs[1] != directory and  site.style == 'dir' %}
             {% if directory != '' %}
                 </dl>
             {% endif %}
             {% assign directory = dirs[1] %}
             <dl>
-            {% if site.spacification == null %}
-                <dt><a href="{{ baseurl }}/{{ directory }}">{{ directory }}</a></dt>
+            {% if site.dir_links %}
+                {% if site.dir_spacification == null %}
+                    <dt><a href="{{ baseurl }}/{{ directory }}">{{ directory }}</a></dt>
+                {% else %}
+                    <dt><a href="{{ baseurl }}/{{ directory }}">{{ directory | replace: site.dir_spacification, ' ' }}</a></dt>
+                {% endif %}
             {% else %}
-                <dt><a href="{{ baseurl }}/{{ directory }}">{{ directory | replace: site.spacification, ' ' }}</a></dt>
+                {% if site.dir_spacification == null %}
+                    <dt>{{ directory }}</dt>
+                {% else %}
+                    <dt>{{ directory | replace: site.dir_spacification, ' ' }}</dt>
+                {% endif %}
             {% endif %}
         {% endif %}
         {% if site.directories == null or site.directories contains dirs[1] %}
@@ -63,6 +72,7 @@
                 <br>
             {% endif %}
         {% endif %}
+        {% endunless %}
     {% endif %}
 {% endfor %}
 {% if site.style == 'list' %}
