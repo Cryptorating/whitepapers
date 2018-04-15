@@ -18,10 +18,14 @@
         <dt>{{ directory | replace: site.spacification, ' ' }}</dt>
     {% endif %}
 {% endif %}
+{% assign printed_files = '' | split: '' %}
 {% for file in site.static_files %}
     {% if site.extensions == null or site.extensions contains file.extname %}
         {% assign dirs = file.path | split: '/' %}
         {% if dirs[1] == directory or dirs[2] == directory %}
+        {% unless printed_files contains dirs.last %}
+            {% assign last = dirs.last | split: ',' %}
+            {% assign printed_files = printed_files | concat: last %}
             {% if site.style contains 'list' %}
                 <li>
             {% elsif site.style == 'dir' %}
@@ -59,6 +63,7 @@
             {% elsif site.style == null %}
                 <br>
             {% endif %}
+        {% endunless %}
         {% endif %}
     {% endif %}
 {% endfor %}
