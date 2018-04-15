@@ -13,6 +13,7 @@
     {% if site.extensions == null or site.extensions contains file.extname %}
         {% assign dirs = file.path | split: '/' %}
         {% unless site.style == 'dir' and dirs.size < 3 %}
+        {% unless dirs[1] == 'symbol' %}
         {% if dirs[1] != directory and  site.style == 'dir' %}
             {% if directory != '' %}
                 </dl>
@@ -72,6 +73,7 @@
                 <br>
             {% endif %}
         {% endif %}
+        {% endunless %}
         {% endunless %}
     {% endif %}
 {% endfor %}

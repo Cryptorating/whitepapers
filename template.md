@@ -2,7 +2,7 @@
 ---
 
 {% assign index = page.url.size | minus: 2 %}
-{% assign directory = page.url | slice: 1, index %}
+{% assign directory = page.url | slice: 1, index | remove_first: "symbol/" %}
 {% assign baseurl = site.github.baseurl %}
 
 <div>
@@ -21,7 +21,7 @@
 {% for file in site.static_files %}
     {% if site.extensions == null or site.extensions contains file.extname %}
         {% assign dirs = file.path | split: '/' %}
-        {% if dirs[1] == directory %}
+        {% if dirs[1] == directory or dirs[2] == directory %}
             {% if site.style contains 'list' %}
                 <li>
             {% elsif site.style == 'dir' %}
