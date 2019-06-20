@@ -76,4 +76,4 @@
 {% endif %}
 </div>
 
-This site is done with [jeklist](https://github.com/fgallaire/jeklist)
+This site is done with [jeklist](https://github.com/Cryptorating/jeklist)

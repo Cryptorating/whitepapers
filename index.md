@@ -86,4 +86,4 @@
 {% endif %}
 </div>
 
-This site is done with [jeklist](https://github.com/fgallaire/jeklist) by [fgallaire](https://f.gallai.re)
+This site is done with [jeklist](https://github.com/Cryptorating/jeklist) by [fgallaire](https://f.gallai.re)
