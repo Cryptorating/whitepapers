@@ -13,3 +13,6 @@ truncate: 60
 html_link:
   - .md
   - .txt
+sections:
+  - symbol
+  - scam

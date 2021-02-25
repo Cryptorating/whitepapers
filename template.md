@@ -2,8 +2,14 @@
 ---
 
 {% assign index = page.url.size | minus: 2 %}
-{% assign directory = page.url | slice: 1, index | remove_first: "symbol/" %}
+{% assign directory = page.url | slice: 1, index %}
 {% assign baseurl = site.github.baseurl %}
+
+{% for section in site.sections %}
+    {% if directory contains section %}
+        {% assign directory = directory | remove_first: section | remove_first: "/" %}
+    {% endif %}
+{% endfor %}
 
 <div>
 {% if site.style == 'list' %}

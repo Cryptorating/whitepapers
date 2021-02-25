@@ -13,7 +13,7 @@
     {% if site.extensions == null or site.extensions contains file.extname %}
         {% assign dirs = file.path | split: '/' %}
         {% unless site.style == 'dir' and dirs.size < 3 %}
-        {% unless dirs[1] == 'symbol' %}
+        {% unless site.sections contains dirs[1] %}
         {% if dirs[1] != directory and  site.style == 'dir' %}
             {% if directory != '' %}
                 </dl>

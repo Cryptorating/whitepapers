@@ -13,7 +13,7 @@
     {% if site.extensions == null or site.extensions contains file.extname %}
         {% assign dirs = file.path | split: '/' %}
         {% unless site.style == 'dir' and dirs.size < 3 %}
-        {% if dirs[1] == 'symbol' %}
+        {% if site.sections contains dirs[1] %}
         {% if dirs[2] != directory and  site.style == 'dir' %}
             {% if directory != '' %}
                 </dl>
@@ -22,9 +22,9 @@
             <dl>
             {% if site.dir_links %}
                 {% if site.dir_spacification == null %}
-                    <dt><a href="{{ baseurl }}/symbol/{{ directory }}">{{ directory }}</a></dt>
+                    <dt><a href="{{ baseurl }}/{{ dirs[1] }}/{{ directory }}">{{ directory }}</a></dt>
                 {% else %}
-                    <dt><a href="{{ baseurl }}/symbol/{{ directory }}">{{ directory | replace: site.dir_spacification, ' ' }}</a></dt>
+                    <dt><a href="{{ baseurl }}/{{ dirs[1] }}/{{ directory }}">{{ directory | replace: site.dir_spacification, ' ' }}</a></dt>
                 {% endif %}
             {% else %}
                 {% if site.dir_spacification == null %}
@@ -86,4 +86,4 @@
 {% endif %}
 </div>
 
-This site is done with [jeklist](https://github.com/fgallaire/jeklist) by [fgallaire](https://f.gallai.re)
+This site is done with [jeklist](https://github.com/Cryptorating/jeklist) by [fgallaire](https://f.gallai.re)
