@@ -1,6 +1,12 @@
 ---
 ---
 
+{% for section in site.sections %}
+    {% if page.url contains section %}
+        {% assign sectionp = section %}
+    {% endif %}
+{% endfor %}
+
 <div>
 {% if site.style == 'list' %}
     <ul>
@@ -13,7 +19,7 @@
     {% if site.extensions == null or site.extensions contains file.extname %}
         {% assign dirs = file.path | split: '/' %}
         {% unless site.style == 'dir' and dirs.size < 3 %}
-        {% if site.sections contains dirs[1] %}
+        {% if dirs[1] == sectionp %}
         {% if dirs[2] != directory and  site.style == 'dir' %}
             {% if directory != '' %}
                 </dl>
