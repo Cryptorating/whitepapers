@@ -5,11 +5,14 @@
 {% assign directory = page.url | slice: 1, index %}
 {% assign baseurl = site.github.baseurl %}
 
-{% for section in site.sections %}
-    {% if directory contains section %}
-        {% assign directory = directory | remove_first: section | remove_first: "/" %}
-    {% endif %}
-{% endfor %}
+{% if directory contains "/" %}
+    {% for section in site.sections %}
+        {% if directory contains section %}
+            {% assign directory = directory | remove_first: section | remove_first: "/" %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
 <div>
 {% if site.style == 'list' %}
