@@ -7,7 +7,7 @@
 
 {% if directory contains "/" %}
     {% for section in site.sections %}
-        {% if directory contains section %}
+        {% if directory contains section | append "/" %}
             {% assign directory = directory | remove_first: section | remove_first: "/" %}
             {% break %}
         {% endif %}
