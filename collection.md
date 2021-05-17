@@ -2,8 +2,8 @@
 ---
 
 {% for collection in site.collections %}
-    {% if page.url contains collection %}
-        {% assign collectionp = collection %}
+    {% if page.url contains collection.label %}
+        {% assign collectionp = collection.label %}
     {% endif %}
 {% endfor %}
 
